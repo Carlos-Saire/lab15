@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     Rigidbody2D _rigidbody2D;
+    AudioSource _audioSource;
     public TextControl Puntos;
     public float Speed;
     public GameObject Bala;
@@ -12,6 +13,7 @@ public class PlayerControl : MonoBehaviour
     float vertical;
     private void Awake()
     {
+        _audioSource = GetComponent<AudioSource>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
     private void Update()
@@ -20,6 +22,7 @@ public class PlayerControl : MonoBehaviour
         vertical = Input.GetAxis("Vertical");
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            _audioSource.Play();
            GameObject Go= Instantiate(Bala, transform.position, transform.rotation);
             Go.GetComponent<BalaControl>().Obtener(Puntos);
         }
